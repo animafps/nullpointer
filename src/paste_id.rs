@@ -11,7 +11,7 @@ impl<'a> FromParam<'a> for PasteId<'a> {
     type Error = &'a str;
 
     fn from_param(param: &'a str) -> Result<Self, Self::Error> {
-        param.chars().all(|c| c.is_ascii_alphanumeric())
+        param.chars().all(|c| c.is_ascii_alphanumeric() || c == '.' )
             .then(|| PasteId(param.into()))
             .ok_or(param)
     }
